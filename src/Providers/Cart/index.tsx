@@ -27,8 +27,14 @@ export const useCart = () => {
 
 export const CartProvider = ({ children }: CartProps) => {
     const [cart, setCart] = useState<Product[]>([]);
-    const addProduct = (product: Product) => {
-        setCart([...cart, product]);
+    const addProduct = (productToBeAdded: Product) => {
+        if(cart.length > 0){
+            cart.filter(product => product.id === productToBeAdded.id).length > 0 ?
+            setCart(cart) :
+            setCart([...cart, productToBeAdded]);
+        } else {
+            setCart([...cart, productToBeAdded])
+        }
     };
     const deleteProduct = (productToBeDeleted: Product) => {
         const newCart = cart.filter(

@@ -3,14 +3,13 @@ import { useCart } from "../../Providers/Cart";
 const ShowCart = () => {
     const { cart, deleteProduct } = useCart();
 
-
     return (
         <>
             {cart.length > 0 ?
                 <ul>
-                {cart.map(product => (
-                    <li key={product.id}>
-                        <img src={product.image}/>
+                {cart.map((product, index) => (
+                    <li key={index}>
+                        <img alt={product.title} src={product.image}/>
                         <h2>{product.title}</h2>
                         <p>{product.description}</p>
                         <span> R&#x00024;{product.price}</span>
